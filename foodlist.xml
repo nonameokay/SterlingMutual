@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <product_names>
+    <product_name id = "1">Pizza</product_name>
+    <product_name id = "2">Fries</product_name>
+    <product_name id = "3">Burger</product_name>
+    <product_name id = "3">Soda</product_name>
+  </product_names>
+  <product_prices>
+    <product_price food = "Pizza">12.99</product_price>
+    <product_price food = "Fries">8.99</product_price>
+    <product_price food = "Burger">15.99</product_price>
+    <product_price food = "Soda">5.99</product_price>
+  </product_prices>
+  <product_sizes>
+    <product_size food = "Pizza">Small|Medium|Large|ExtraLarge</product_size>
+    <product_size food = "Fries">Small|Medium|Large|ExtraLarge</product_size>
+    <product_size food = "Burger">NoCombo|Combo</product_size>
+    <product_size food = "Soda">Small|Medium|Large|ExtraLarge</product_size>
+  <product_sizes>
+</products>
