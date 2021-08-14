@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food App</title>
+</head>
+
+<body>
+    <h2>Food Ordering App</h2>
+    <main> 
+        <ul id="product_names"></ul>
+        <ul id="product_prices"></ul>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let url = "foodlist.xml";
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "application/xml");
+                    console.log(xml);
+                    //ProductList(xml);
+                    ProductPriceList(xml);
+                });
+        })
+
+        function ProductList(x) {
+            let list = document.getElementById('product_names');
+            let product_names = x.getElementsByTagName('product_name');
+            for (let i = 0; i < product_names.length; i++) {
+                let li = document.createElement('li');
+                let product_name = product_names[i].firstChild.nodeValue;
+                li.textContent = product_name;
+                list.appendChild(li);
+            }
+        }
+
+        function ProductPriceList(x) {
+            let list = document.getElementById('product_prices');
+            let product_prices = x.getElementsByTagName('product_price');
+            for (let i = 0; i < product_prices.length; i++) {
+                let li = document.createElement('li');
+                let product_price = product_prices[i].firstChild.nodeValue;
+                let food_item = product_prices[i].getAttribute('food');
+                li.textContent = `${food_item} - $${product_price}`;
+                button(i + 1);
+                list.appendChild(li);
+            }
+        }
+
+        function button(x) {
+            const btn = document.createElement('button');
+            btn.innerText = "Select " + x;
+            document.body.appendChild(btn);
+            btn.addEventListener('click', () => {
+                var str = window.prompt("Enter quantity: ");
+                if (str <= 50){
+                    alert("You have chosen an amount of " + str +" item #" + x)
+                    document.write('You have selected ' + str + ' item ' + x +"<br>");
+                    document.write('Your order is confirmed and your order id number is #'+ Math.floor((Math.random()*10000)+1));
+                }
+                else{
+                    alert("Your quantity is over the limit");
+                }
+            });
+            return btn;
+        }
+
+
+    </script>
+
+</body>
+
+</html>
